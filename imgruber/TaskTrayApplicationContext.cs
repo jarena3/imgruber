@@ -27,7 +27,17 @@ namespace imgruber
             _hkm = new HotKeyManager();
 
             //TODO: add hotkey changing
-            _hkm.Register(Key.PrintScreen, ModifierKeys.None);
+            try
+            {
+                _hkm.Register(Key.PrintScreen, ModifierKeys.None);
+            }
+            catch (Exception)
+            {
+                _hkm.Unregister(Key.PrintScreen, ModifierKeys.None);
+                _hkm.Register(Key.PrintScreen, ModifierKeys.None);
+            }
+            
+
 
             _hkm.KeyPressed += TakeScreenshot;
         }
