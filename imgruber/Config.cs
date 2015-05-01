@@ -16,18 +16,18 @@ namespace imgruber
 
         public void LoadConfigurations()
         {
-            RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Imgruber\Config", true);
+            // If key is null, create it.
+            RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Imgruber\Config", true) ??
+                              Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Imgruber\Config");
 
-            if (key == null)
-            {
-                key = Registry.LocalMachine.CreateSubKey(@"SOFTWARE\Imgruber\Config");
-            }
-
-            useCtrlBOX.Checked = bool.Parse((string) key.GetValue("hotkeyCTRL", false));
-            useAltBOX.Checked = bool.Parse((string) key.GetValue("hotkeyALT", false));
+            // Originally these were cast as strings and parsed as bools, but
+            // they are actually stored as bools in the reg. 
+            
+            useCtrlBOX.Checked = (bool)key.GetValue("hotkeyCTRL", false);
+            useAltBOX.Checked = (bool)key.GetValue("hotkeyALT", false);
             HotkeyCOMBO.SelectedIndex = (int) key.GetValue("hotkeyIndex", 0);
             LinkCodeCOMBO.SelectedIndex = (int) key.GetValue("linkCodeIndex", 0);
-            TweetThisCB.Checked = bool.Parse((string) key.GetValue("autoTweet", false));
+            TweetThisCB.Checked = (bool)key.GetValue("autoTweet", false);
             TweetPrependTB.Text = (string) key.GetValue("prependText", "");
         }
 
