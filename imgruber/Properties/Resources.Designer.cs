@@ -63,9 +63,9 @@ namespace imgruber.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon imgrub_ico {
+        internal static System.Drawing.Icon imgruber {
             get {
-                object obj = ResourceManager.GetObject("imgrub_ico", resourceCulture);
+                object obj = ResourceManager.GetObject("imgruber", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
             }
         }

@@ -19,7 +19,7 @@ namespace imgruber
             var configMenuItem = new MenuItem("Configuration", ShowConfig);
             var exitMenuItem = new MenuItem("Exit", Exit);
 
-            notifyIcon.Icon = Resources.imgrub_ico;
+            notifyIcon.Icon = Resources.imgruber;
             notifyIcon.DoubleClick += TakeScreenshot;
             notifyIcon.ContextMenu = new ContextMenu(new[] {configMenuItem, exitMenuItem});
             notifyIcon.Visible = true;

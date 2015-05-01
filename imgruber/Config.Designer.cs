@@ -36,7 +36,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.urlTB = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.CharCount = new System.Windows.Forms.Label();
             this.TweetPrependTB = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.TweetThisCB = new System.Windows.Forms.CheckBox();
@@ -114,7 +114,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.CharCount);
             this.groupBox1.Controls.Add(this.TweetPrependTB);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.TweetThisCB);
@@ -125,16 +125,17 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Auto-tweet";
             // 
-            // label4
+            // CharCount
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(159, 42);
-            this.label4.Name = "label4";
-            this.label4.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
-            this.label4.Size = new System.Drawing.Size(34, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "(###)";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            this.CharCount.AutoSize = true;
+            this.CharCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.CharCount.Location = new System.Drawing.Point(159, 42);
+            this.CharCount.Name = "CharCount";
+            this.CharCount.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.CharCount.Size = new System.Drawing.Size(41, 13);
+            this.CharCount.TabIndex = 7;
+            this.CharCount.Text = "0/110";
+            this.CharCount.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // TweetPrependTB
             // 
@@ -143,6 +144,7 @@
             this.TweetPrependTB.Name = "TweetPrependTB";
             this.TweetPrependTB.Size = new System.Drawing.Size(217, 118);
             this.TweetPrependTB.TabIndex = 5;
+            this.TweetPrependTB.TextChanged += new System.EventHandler(this.TweetPrependTB_TextChanged);
             // 
             // label3
             // 
@@ -263,7 +265,7 @@
         private System.Windows.Forms.ComboBox HotkeyCOMBO;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label CharCount;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.LinkLabel HelpLink;
         private System.Windows.Forms.LinkLabel SourceLink;

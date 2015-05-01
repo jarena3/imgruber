@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Drawing;
 using System.Windows.Forms;
 using Microsoft.Win32;
 
@@ -56,6 +57,19 @@ namespace imgruber
         private void SourceLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Process.Start("https://github.com/jarena3/imgruber");
+        }
+
+        private void TweetPrependTB_TextChanged(object sender, EventArgs e)
+        {
+            CharCount.Text = TweetPrependTB.Text.Length + "/110";
+            if (TweetPrependTB.Text.Length > 110)
+            {
+                CharCount.ForeColor = Color.DarkRed;
+            }
+            else
+            {
+                CharCount.ForeColor = Color.Black;
+            }
         }
     }
 }
