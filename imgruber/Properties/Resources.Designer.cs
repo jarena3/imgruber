@@ -69,5 +69,32 @@ namespace imgruber.Properties {
                 return ((System.Drawing.Icon)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Imgruber says:.
+        /// </summary>
+        internal static string Imgruber_says_ {
+            get {
+                return ResourceManager.GetString("Imgruber_says_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Screenshot uploaded to Imgur, link copied to clipboard: .
+        /// </summary>
+        internal static string Screenshot_uploaded_to_Imgur__link_copied_to_clipboard__ {
+            get {
+                return ResourceManager.GetString("Screenshot_uploaded_to_Imgur__link_copied_to_clipboard__", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went terribly wrong. Are you sure you&apos;re connected to the internet?.
+        /// </summary>
+        internal static string Something_went_terribly_wrong__Are_you_sure_you_re_connected_to_the_internet_ {
+            get {
+                return ResourceManager.GetString("Something_went_terribly_wrong__Are_you_sure_you_re_connected_to_the_internet_", resourceCulture);
+            }
+        }
     }
 }

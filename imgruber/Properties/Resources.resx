@@ -121,4 +121,13 @@
   <data name="imgrub_ico" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\favicon (1).ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Imgruber_says_" xml:space="preserve">
+    <value>Imgruber says:</value>
+  </data>
+  <data name="Screenshot_uploaded_to_Imgur__link_copied_to_clipboard__" xml:space="preserve">
+    <value>Screenshot uploaded to Imgur, link copied to clipboard: </value>
+  </data>
+  <data name="Something_went_terribly_wrong__Are_you_sure_you_re_connected_to_the_internet_" xml:space="preserve">
+    <value>Something went terribly wrong. Are you sure you're connected to the internet?</value>
+  </data>
 </root>

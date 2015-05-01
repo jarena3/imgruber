@@ -1,29 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Text;
 using System.Windows.Forms;
 using System.Windows.Input;
 using GlobalHotKey;
+using imgruber.Properties;
 
 namespace imgruber
 {
     public class TaskTrayApplicationContext : ApplicationContext
     {
-        public NotifyIcon notifyIcon = new NotifyIcon();
+        private readonly HotKeyManager _hkm;
         public Config configWindow;
-        private HotKeyManager _hkm;
+        public NotifyIcon notifyIcon = new NotifyIcon();
 
         public TaskTrayApplicationContext()
         {
-            configWindow = new Config(this);
+            configWindow = new Config();
             configWindow.LoadConfigurations();
-            MenuItem configMenuItem = new MenuItem("Configuration", new EventHandler(ShowConfig));
-            MenuItem exitMenuItem = new MenuItem("Exit", new EventHandler(Exit));
+            var configMenuItem = new MenuItem("Configuration", ShowConfig);
+            var exitMenuItem = new MenuItem("Exit", Exit);
 
-            notifyIcon.Icon = Properties.Resources.imgrub_ico;
-            notifyIcon.DoubleClick += new EventHandler(TakeScreenshot);
-            notifyIcon.ContextMenu = new ContextMenu(new MenuItem[] { configMenuItem, exitMenuItem });
+            notifyIcon.Icon = Resources.imgrub_ico;
+            notifyIcon.DoubleClick += TakeScreenshot;
+            notifyIcon.ContextMenu = new ContextMenu(new[] {configMenuItem, exitMenuItem});
             notifyIcon.Visible = true;
 
             _hkm = new HotKeyManager();
@@ -32,17 +30,15 @@ namespace imgruber
             _hkm.Register(Key.PrintScreen, ModifierKeys.None);
 
             _hkm.KeyPressed += TakeScreenshot;
-
-
         }
 
-        void TakeScreenshot(object sender, EventArgs e)
+        private void TakeScreenshot(object sender, EventArgs e)
         {
             var sshot = new Screenshot();
             configWindow.urlTB.Text = sshot.Take(sender, e, this);
         }
 
-        void ShowConfig(object sender, EventArgs e)
+        private void ShowConfig(object sender, EventArgs e)
         {
             if (configWindow.Visible)
                 configWindow.Focus();
@@ -50,7 +46,7 @@ namespace imgruber
                 configWindow.ShowDialog();
         }
 
-        void Exit(object sender, EventArgs e)
+        private void Exit(object sender, EventArgs e)
         {
             notifyIcon.Visible = false;
             notifyIcon.Dispose();
