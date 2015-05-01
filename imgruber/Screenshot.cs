@@ -62,6 +62,13 @@ namespace imgruber
         private void ss_MouseUp(object sender, MouseEventArgs e)
         {
             _ssField.Hide();
+
+            // If the user just clicks on the screen, instead of drawing a square.
+            // It would throw creating a new bitmap. In this case, just ignore and leave.
+            if (_rect.Width <= 0 || _rect.Height <= 0)
+            {
+                return;
+            }
             var bmp = new Bitmap(_rect.Width, _rect.Height);
             using (Graphics g = Graphics.FromImage(bmp))
             {
