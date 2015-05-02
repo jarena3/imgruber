@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Windows.Forms;
 using System.Windows.Input;
 using GlobalHotKey;
@@ -8,7 +9,7 @@ namespace imgruber
 {
     public class TaskTrayApplicationContext : ApplicationContext
     {
-        private readonly HotKeyManager _hkm;
+        public static HotKeyManager hkm;
         public Config configWindow;
         public NotifyIcon notifyIcon = new NotifyIcon();
 
@@ -24,28 +25,65 @@ namespace imgruber
             notifyIcon.ContextMenu = new ContextMenu(new[] {configMenuItem, exitMenuItem});
             notifyIcon.Visible = true;
 
-            _hkm = new HotKeyManager();
+            hkm = new HotKeyManager();
 
-            //TODO: add hotkey changing
+
+            RegisterHotKey(configWindow);         
+
+            hkm.KeyPressed += TakeScreenshot;
+        }
+
+        public static void RegisterHotKey(Config config)
+        {
+            ModifierKeys mod;
+
+            if (config.useCtrlBOX.Checked && config.useAltBOX.Checked)
+            {
+                mod = (ModifierKeys.Control | ModifierKeys.Alt);
+            }
+            else if (config.useCtrlBOX.Checked && !config.useAltBOX.Checked)
+            {
+                mod = ModifierKeys.Control;
+            }
+            else if (config.useAltBOX.Checked && !config.useCtrlBOX.Checked)
+            {
+                mod = ModifierKeys.Alt;
+            }
+            else
+            {
+                mod = ModifierKeys.None;
+            }
+
+            Key hotkey = Key.PrintScreen;
+
+            switch (config.HotkeyCOMBO.SelectedIndex)
+            {
+                case 0: //print screen
+                    break;
+                case 1: //scroll lock
+                    hotkey = Key.Scroll;
+                    break;
+                case 2: //pause break
+                    hotkey = Key.Pause;
+                    break;
+            }
+
             try
             {
-                _hkm.Register(Key.PrintScreen, ModifierKeys.None);
+                hkm.Register(hotkey, mod);
             }
             catch (Exception)
             {
-                _hkm.Unregister(Key.PrintScreen, ModifierKeys.None);
-                _hkm.Register(Key.PrintScreen, ModifierKeys.None);
+                hkm.Unregister(hotkey, mod);
+                hkm.Register(hotkey, mod);
             }
-            
-
-
-            _hkm.KeyPressed += TakeScreenshot;
         }
 
         private void TakeScreenshot(object sender, EventArgs e)
         {
             var sshot = new Screenshot();
-            configWindow.urlTB.Text = sshot.Take(sender, e, this);
+            var link = sshot.Take(sender, e, this);
+            configWindow.urlTB.Text = link;
         }
 
         private void ShowConfig(object sender, EventArgs e)
@@ -60,8 +98,8 @@ namespace imgruber
         {
             notifyIcon.Visible = false;
             notifyIcon.Dispose();
-            _hkm.Unregister(Key.PrintScreen, ModifierKeys.None);
-            _hkm.Dispose();
+            hkm.Unregister(Key.PrintScreen, ModifierKeys.None);
+            hkm.Dispose();
             Application.Exit();
         }
     }

@@ -51,7 +51,6 @@
             // useCtrlBOX
             // 
             this.useCtrlBOX.AutoSize = true;
-            this.useCtrlBOX.Enabled = false;
             this.useCtrlBOX.Location = new System.Drawing.Point(13, 70);
             this.useCtrlBOX.Name = "useCtrlBOX";
             this.useCtrlBOX.Size = new System.Drawing.Size(54, 17);
@@ -72,7 +71,6 @@
             // useAltBOX
             // 
             this.useAltBOX.AutoSize = true;
-            this.useAltBOX.Enabled = false;
             this.useAltBOX.Location = new System.Drawing.Point(76, 70);
             this.useAltBOX.Name = "useAltBOX";
             this.useAltBOX.Size = new System.Drawing.Size(46, 17);
@@ -82,12 +80,11 @@
             // 
             // HotkeyCOMBO
             // 
-            this.HotkeyCOMBO.Enabled = false;
             this.HotkeyCOMBO.FormattingEnabled = true;
             this.HotkeyCOMBO.Items.AddRange(new object[] {
             "Print Screen",
-            "F12",
-            "~"});
+            "Scoll Lock",
+            "Pause Break"});
             this.HotkeyCOMBO.Location = new System.Drawing.Point(128, 68);
             this.HotkeyCOMBO.Name = "HotkeyCOMBO";
             this.HotkeyCOMBO.Size = new System.Drawing.Size(121, 21);
@@ -107,7 +104,6 @@
             // 
             this.urlTB.Location = new System.Drawing.Point(13, 26);
             this.urlTB.Name = "urlTB";
-            this.urlTB.ReadOnly = true;
             this.urlTB.Size = new System.Drawing.Size(236, 20);
             this.urlTB.TabIndex = 5;
             this.urlTB.WordWrap = false;
@@ -194,7 +190,7 @@
             this.DoneBTN.Name = "DoneBTN";
             this.DoneBTN.Size = new System.Drawing.Size(102, 27);
             this.DoneBTN.TabIndex = 10;
-            this.DoneBTN.Text = "Done";
+            this.DoneBTN.Text = "Save";
             this.DoneBTN.UseVisualStyleBackColor = true;
             this.DoneBTN.Click += new System.EventHandler(this.DoneBTN_Click);
             // 
@@ -259,10 +255,7 @@
 
         #endregion
 
-        private System.Windows.Forms.CheckBox useCtrlBOX;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.CheckBox useAltBOX;
-        private System.Windows.Forms.ComboBox HotkeyCOMBO;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label CharCount;
@@ -275,5 +268,8 @@
         public System.Windows.Forms.CheckBox TweetThisCB;
         public System.Windows.Forms.TextBox TweetPrependTB;
         public System.Windows.Forms.ComboBox LinkCodeCOMBO;
+        public System.Windows.Forms.CheckBox useCtrlBOX;
+        public System.Windows.Forms.CheckBox useAltBOX;
+        public System.Windows.Forms.ComboBox HotkeyCOMBO;
     }
 }

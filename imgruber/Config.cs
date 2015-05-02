@@ -8,7 +8,6 @@ namespace imgruber
 {
     public partial class Config : Form
     {
-
         public Config()
         {
             InitializeComponent();
@@ -22,12 +21,13 @@ namespace imgruber
 
             // Originally these were cast as strings and parsed as bools, but
             // they are actually stored as bools in the reg. 
-            
-            useCtrlBOX.Checked = (bool)key.GetValue("hotkeyCTRL", false);
-            useAltBOX.Checked = (bool)key.GetValue("hotkeyALT", false);
+                    // It still complained about conversion, but this should work in all(?) cases.
+            urlTB.Text = (string) key.GetValue("lastLink", ""); 
+            useCtrlBOX.Checked = Convert.ToBoolean(key.GetValue("hotkeyCTRL", false));
+            useAltBOX.Checked = Convert.ToBoolean(key.GetValue("hotkeyALT", false));
             HotkeyCOMBO.SelectedIndex = (int) key.GetValue("hotkeyIndex", 0);
             LinkCodeCOMBO.SelectedIndex = (int) key.GetValue("linkCodeIndex", 0);
-            TweetThisCB.Checked = (bool)key.GetValue("autoTweet", false);
+            TweetThisCB.Checked = Convert.ToBoolean(key.GetValue("autoTweet", false));
             TweetPrependTB.Text = (string) key.GetValue("prependText", "");
         }
 
@@ -35,6 +35,7 @@ namespace imgruber
         {
             RegistryKey key = Registry.LocalMachine.OpenSubKey(@"SOFTWARE\Imgruber\Config", true);
 
+            key.SetValue("lastLink", urlTB.Text);
             key.SetValue("hotkeyCTRL", useCtrlBOX.Checked);
             key.SetValue("hotkeyALT", useAltBOX.Checked);
             key.SetValue("hotkeyIndex", HotkeyCOMBO.SelectedIndex);
@@ -46,6 +47,7 @@ namespace imgruber
         private void DoneBTN_Click(object sender, EventArgs e)
         {
             SaveConfigurations();
+            TaskTrayApplicationContext.RegisterHotKey(this);
             Close();
         }
 
